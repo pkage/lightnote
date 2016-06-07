@@ -23,9 +23,6 @@ new Vue({
 		} else {
 			this.input = stored;
 		}
-
-		this.output = marked(this.input);
-
 	}
 
 })
