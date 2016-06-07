@@ -1,0 +1,86 @@
+
+$pad: 3px;
+$dtop-pad: 20%;
+
+@mixin absolutepos {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+@mixin fullsize {
+	min-height: 100vh;
+}
+
+@mixin desktop {
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+
+.fullscreen {
+	color: $main_color;
+	background-color: $main_bg_color;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	max-width: 100vw;
+
+	@include fullsize;
+	@include absolutepos;
+}
+
+#input, #output {
+	@include fullsize;
+	@include absolutepos;	
+	color: $main_color;
+	background-color: $main_bg_color;
+}
+
+#input {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	resize: none;
+	outline: 0;
+	font-family: "Roboto Mono";
+
+	// resizing stuff
+	padding: $pad;
+	width: calc(100vw - #{$pad - $pad});
+	@include desktop {
+		width: calc(100vw - #{$dtop-pad - $dtop-pad});
+		padding: $pad $dtop-pad $pad $dtop-pad;
+	}
+}
+
+#output {
+	opacity: 0;
+	pointer-events: none;
+	@include absolutepos;
+
+	transform: scale(0.95);
+	transition: transform 0.25s cubic-bezier(0,0,0.3,1), opacity 0.25s cubic-bezier(0,0,0.3,1);
+	&.active {
+		transform: none;
+		opacity: 1;
+		pointer-events: auto;
+	}
+	&.initial {
+		visibility: hidden;
+	}
+
+	> .output-inner {
+		font-family: Roboto, sans-serif;
+		padding: $pad;
+		@include desktop {
+			padding: $pad $dtop-pad $pad $dtop-pad;
+		}
+	}
+}
+
+.input-wrap {
+	@include absolutepos;
+}

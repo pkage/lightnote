@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>lightnote</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="shortcut icon" content="/favicon.ico">
+
+	<link href="static/dist.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<script defer src="static/vue.js" type="text/javascript"></script>
+	<script defer src="static/marked.js" type="text/javascript"></script>
+	<script defer src="static/dist.js" type="text/javascript"></script>
+	<div id="editor">
+		<div class="input-wrap">
+			<textarea id="input" v-model="input" v-on:keyup.esc="toggleView" v-on:keyup="save"></textarea>
+		</div>
+		<div id="output" class="{{active}}">
+			<div class="output-inner" v-html="output">
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
